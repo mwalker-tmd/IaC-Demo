@@ -11,6 +11,9 @@ variable "tags_name" {
 variable "metadata_options-http_tokens" {
     default = "ERROR: Variable metadata_options-http_tokens not defined."
 }
+variable "monitoring" {
+  default = "ERROR: Variable monitoring not defined."
+}
 
 ### Provider Variables ###
 variable "aws_region" {
