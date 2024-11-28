@@ -4,6 +4,7 @@ instance_type = "t2.micro"
 tags_name = "My EC2 Instance - v0.2.0"
 metadata_options-http_tokens = "required"
 monitoring = true
+ebs_optimized = true
 
 ### Provider Variable Values ###
 aws_region  = "us-west-2"

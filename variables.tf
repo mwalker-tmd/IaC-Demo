@@ -14,6 +14,9 @@ variable "metadata_options-http_tokens" {
 variable "monitoring" {
   default = "ERROR: Variable monitoring not defined."
 }
+variable "ebs_optimized" {
+  default = "ERROR: Variable ebs_optimized not defined."
+}
 
 ### Provider Variables ###
 variable "aws_region" {
