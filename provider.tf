@@ -8,6 +8,6 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-west-2"
-  profile = "mlw-idctr-profile"
+  region  = var.aws_region
+  profile = var.aws_profile
 }
