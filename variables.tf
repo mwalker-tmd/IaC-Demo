@@ -8,6 +8,9 @@ variable "instance_type" {
 variable "tags_name" {
   default = "ERROR: Variable tags_name not defined."
 }
+variable "metadata_options-http_tokens" {
+    default = "ERROR: Variable metadata_options-http_tokens not defined."
+}
 
 ### Provider Variables ###
 variable "aws_region" {
