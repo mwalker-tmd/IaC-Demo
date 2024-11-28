@@ -11,4 +11,8 @@ resource "aws_instance" "my_ec2" {
   metadata_options {
     http_tokens = var.metadata_options-http_tokens
   }
+
+  root_block_device {
+    encrypted = var.root_block_device-encrypted
+  }
 }

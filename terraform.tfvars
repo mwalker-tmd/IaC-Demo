@@ -5,6 +5,7 @@ tags_name = "My EC2 Instance - v0.2.0"
 metadata_options-http_tokens = "required"
 monitoring = true
 ebs_optimized = true
+root_block_device-encrypted = true
 
 ### Provider Variable Values ###
 aws_region  = "us-west-2"

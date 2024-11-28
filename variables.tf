@@ -17,6 +17,9 @@ variable "monitoring" {
 variable "ebs_optimized" {
   default = "ERROR: Variable ebs_optimized not defined."
 }
+variable "root_block_device-encrypted" {
+  default = "ERROR: Variable root_block_device-encrypted not defined."
+}
 
 ### Provider Variables ###
 variable "aws_region" {
