@@ -5,7 +5,7 @@ resource "aws_instance" "my_ec2" {
   ebs_optimized = var.ebs_optimized
 
   tags = {
-    Name = var.tags_name
+    Name = "EC2 ${var.tags_name}"
   }
 
   metadata_options {
@@ -14,5 +14,13 @@ resource "aws_instance" "my_ec2" {
 
   root_block_device {
     encrypted = var.root_block_device-encrypted
+  }
+}
+
+resource "aws_vpc" "my_vpc" {
+  cidr_block = var.vpc_cidr_block
+
+  tags = {
+    Name = "VPC ${var.tags_name}"
   }
 }

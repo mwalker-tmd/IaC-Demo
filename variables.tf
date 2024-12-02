@@ -21,6 +21,11 @@ variable "root_block_device-encrypted" {
   default = "ERROR: Variable root_block_device-encrypted not defined."
 }
 
+### Networking Variables ###
+variable "vpc_cidr_block" {
+  default = "ERROR: Variable vpc_cidr_block not defined."
+}
+
 ### Provider Variables ###
 variable "aws_region" {
   default = "us-west-2"
