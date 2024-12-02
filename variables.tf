@@ -25,6 +25,18 @@ variable "root_block_device-encrypted" {
 variable "vpc_cidr_block" {
   default = "ERROR: Variable vpc_cidr_block not defined."
 }
+variable "public_subnet_cidrs" {
+  type = list(string)
+  default = []
+}
+variable "private_subnet_cidrs" {
+  type = list(string)
+  default = []
+}
+variable "availability_zones" {
+    type = list(string)
+    default = []
+}
 
 ### Provider Variables ###
 variable "aws_region" {
