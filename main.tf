@@ -45,7 +45,6 @@ resource "aws_subnet" "private_subnets" {
     Name = "Private Subnets ${var.tags_name}"
   }
 }
-
 resource "aws_internet_gateway" "my_igw" {
     vpc_id = aws_vpc.my_vpc.id
 
@@ -64,4 +63,9 @@ resource "aws_route_table" "public_route_table" {
   tags = {
     Name = "Public Route Table ${var.tags_name}"
   }
+}
+resource "aws_route_table_association" "public_route_table_associations" {
+  count = length(aws_subnet.public_subnets[*].id)
+  subnet_id = element(aws_subnet.public_subnets[*].id, count.index)
+  route_table_id = aws_route_table.public_route_table.id
 }
