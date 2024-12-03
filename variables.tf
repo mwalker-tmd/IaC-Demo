@@ -37,6 +37,9 @@ variable "availability_zones" {
     type = list(string)
     default = []
 }
+variable "public_route_table_cidr_block" {
+    default = "ERROR: Variable public_route_table_cidr_block not defined."
+}
 
 ### Provider Variables ###
 variable "aws_region" {

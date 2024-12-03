@@ -45,3 +45,23 @@ resource "aws_subnet" "private_subnets" {
     Name = "Private Subnets ${var.tags_name}"
   }
 }
+
+resource "aws_internet_gateway" "my_igw" {
+    vpc_id = aws_vpc.my_vpc.id
+
+    tags = {
+        Name = "IGW ${var.tags_name}"
+    }
+}
+resource "aws_route_table" "public_route_table" {
+  vpc_id = aws_vpc.my_vpc.id
+
+  route {
+    cidr_block = var.public_route_table_cidr_block
+    gateway_id = aws_internet_gateway.my_igw.id
+  }
+
+  tags = {
+    Name = "Public Route Table ${var.tags_name}"
+  }
+}
