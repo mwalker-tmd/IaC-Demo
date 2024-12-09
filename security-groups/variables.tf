@@ -6,5 +6,5 @@ variable "vpc_id" {
 variable "trusted_cidr_blocks" {
   type = list(string)
   description = "List of CIDR blocks to allow traffic from"
-  default = ["136.36.138.110"]
+  default = ["136.36.138.110/32"]
 }
