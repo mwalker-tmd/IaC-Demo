@@ -48,13 +48,3 @@ variable "aws_region" {
 variable "aws_profile" {
   default = "mlw-idctr-profile"
 }
-
-### Output Variables ###
-output "instance_id" {
-  value = aws_instance.my_ec2.id
-  description = "EC2 Instance Identifier"
-}
-output "instance_public_ip" {
-  value = aws_instance.my_ec2.public_ip
-  description = "EC2 Instance Public IP Address"
-}
