@@ -71,7 +71,12 @@ resource "aws_route_table_association" "public_route_table_associations" {
 }
 
 module "security_groups" {
-  source = "./security-groups"
-  vpc_id = aws_vpc.my_vpc.id
+  source    = "./security-groups"
+  vpc_id    = aws_vpc.my_vpc.id
   tags_name = var.tags_name
+}
+
+
+module "eks_cluster" {
+  source                        = "./eks-cluster"
 }
