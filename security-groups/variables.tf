@@ -8,3 +8,8 @@ variable "trusted_cidr_blocks" {
   description = "List of CIDR blocks to allow traffic from"
   default = ["136.36.138.110/32"]
 }
+variable "tags_name" {
+  type = string
+  description = "Tags name for resources"
+  default = "ERROR: Security group variable tags_name not defined."
+}

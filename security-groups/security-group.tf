@@ -2,6 +2,7 @@
 resource "aws_security_group" "worker-nodes-sg" {
   vpc_id = var.vpc_id
   description = "Security Group for Worker Nodes"
+  name = "Worker Nodes Sec Group ${var.tags_name}"
 
   tags = {
     Name = "Worker Nodes Security Group"
