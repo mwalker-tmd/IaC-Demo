@@ -69,3 +69,8 @@ resource "aws_route_table_association" "public_route_table_associations" {
   subnet_id = element(aws_subnet.public_subnets[*].id, count.index)
   route_table_id = aws_route_table.public_route_table.id
 }
+
+module "security_groups" {
+  source = "./security-groups"
+  vpc_id = aws_vpc.my_vpc.id
+}
