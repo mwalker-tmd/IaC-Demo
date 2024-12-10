@@ -87,9 +87,20 @@ resource "aws_eks_cluster" "my_eks_cluster" {
       subnet_ids = var.private_subnets
       security_group_ids = [var.worker_node_security_group_id]
       endpoint_public_access = false
-    }
+      endpoint_private_access = true}
+
+  access_config {
+    authentication_mode = "API"
+    bootstrap_cluster_creator_admin_permissions = true
+  }
 
   enabled_cluster_log_types = ["api", "audit", "authenticator","controllerManager","scheduler"]
+
+  depends_on = [
+    aws_iam_role_policy_attachment.AmazonEKSClusterPolicy,
+    aws_iam_role_policy_attachment.AmazonEKSServicePolicy,
+    aws_iam_role_policy_attachment.AmazonEKSVPCResourceController,
+  ]
 
   tags = {
     Name = "EKS Cluster ${var.tags_name}"
