@@ -89,16 +89,6 @@ resource "aws_eks_cluster" "my_eks_cluster" {
       endpoint_public_access = false
     }
 
-  encryption_config {
-    resources = ["secrets"]
-  }
-  create_kms_key = true
-  cluster_encryption_config = [{
-    resources = ["secrets"]
-  }]
-  kms_key_description = "KMS key for EKS cluster"
-  kms_key_enable_default_policy = true
-
   enabled_cluster_log_types = ["api", "audit", "authenticator","controllerManager","scheduler"]
 
   tags = {
