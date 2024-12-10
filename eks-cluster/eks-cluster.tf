@@ -1,7 +1,7 @@
-variable "ec2_assume_role_policy" {
-  description = "IAM assume role policy for the worker nodes"
-  type        = string
-  default = <<POLICY
+### Control Plane Nodes IAM Role configuration ###
+resource "aws_iam_role" "control_plane_nodes_role" {
+  name = "IaC_Demo-control_plane_nodes_role"
+  assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -15,13 +15,6 @@ variable "ec2_assume_role_policy" {
   ]
 }
 POLICY
-}
-
-
-### Control Plane Nodes IAM Role configuration ###
-resource "aws_iam_role" "control_plane_nodes_role" {
-  name = "IaC_Demo-control_plane_nodes_role"
-  assume_role_policy = var.ec2_assume_role_policy
 }
 
 resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy" {
@@ -43,7 +36,20 @@ resource "aws_iam_role_policy_attachment" "AmazonEKSVPCResourceController" {
 ### Worker Nodes IAM Role configuration ###
 resource "aws_iam_role" "worker_nodes_role" {
   name = "IaC_Demo-worker_nodes_role"
-  assume_role_policy = var.ec2_assume_role_policy
+  assume_role_policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+POLICY
 }
 
 resource "aws_iam_role_policy_attachment" "AmazonEKSWorkerNodePolicy" {
