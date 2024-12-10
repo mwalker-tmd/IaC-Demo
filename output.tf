@@ -15,3 +15,6 @@ output "worker_node_security_group" {
   value = module.security_groups.worker_node_security_group_id
   description = "Worker Nodes Security Group Identifier"
 }
+output "private_subnet_ids" {
+  value = aws_subnet.private_subnets[*].id
+}

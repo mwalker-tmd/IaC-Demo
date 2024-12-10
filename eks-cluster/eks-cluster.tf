@@ -72,3 +72,17 @@ resource "aws_iam_instance_profile" "worker_nodes_profile" {
   depends_on = [aws_iam_role.worker_nodes_role]
 }
 
+
+### EKS Cluster Configuration ###
+resource "aws_eks_cluster" "my_eks_cluster" {
+  name     = "IaC_Demo-my_eks_cluster"
+  role_arn = aws_iam_role.control_plane_nodes_role.arn
+    vpc_config {
+      subnet_ids = var.private_subnets
+      security_group_ids = [var.worker_node_security_group_id]
+    }
+
+  tags = {
+    Name = "EKS Cluster ${var.tags_name}"
+  }
+}

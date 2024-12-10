@@ -79,4 +79,7 @@ module "security_groups" {
 
 module "eks_cluster" {
   source                        = "./eks-cluster"
+  tags_name                     = var.tags_name
+  private_subnets               = aws_subnet.private_subnets[*].id
+  worker_node_security_group_id = module.security_groups.worker_node_security_group_id
 }
