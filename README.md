@@ -20,7 +20,8 @@ development process. I was able to create the necessary prerequisites (networkin
 create an EKS cluster. The worker nodes were unable to join the cluster though. It was while researching how to correct
 this issue that I found Anton's tutorial. After verifying the final version of the tutorial results in successfully creating
 an EKS cluster, I decided to start over and follow his tutorial to completion, applying the best practices I have learned
-along the way (using variables, static code analysis, build and tear down validations, etc.).  
+along the way (using variables, static code analysis, build and tear down validations, etc.). I also established a process
+which uses best practices for iterative code development (see the _Getting Started --> Process_ section below).
 
 I have documented the final issue in [Issue #6](https://github.com/mwalker-tmd/IaC-Demo/issues/6).
 The last commit of the code for this first attempt is [Commit e91e054](https://github.com/mwalker-tmd/IaC-Demo/commit/e91e0544bb2cba39a617c7cad0d7130f906138f5).
@@ -36,7 +37,7 @@ The last commit of the code for this first attempt is [Commit e91e054](https://g
 
 
 ### Process
-As before, I will be following this process:
+I will be following this process, which follows the best practices for iterative code development:
 1. Implement the code for the current step of the tutorial
 2. Use Checkov to validate the code (`checkov -d .`)
 3. Use Terraform to apply the code:
