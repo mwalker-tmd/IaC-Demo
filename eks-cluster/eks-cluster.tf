@@ -86,8 +86,9 @@ resource "aws_eks_cluster" "my_eks_cluster" {
     vpc_config {
       subnet_ids = var.private_subnets
       security_group_ids = [var.worker_node_security_group_id]
-      endpoint_public_access = false
-      endpoint_private_access = true}
+      endpoint_public_access = true
+      endpoint_private_access = false
+    }
 
   access_config {
     authentication_mode = "API"
@@ -104,5 +105,39 @@ resource "aws_eks_cluster" "my_eks_cluster" {
 
   tags = {
     Name = "EKS Cluster ${var.tags_name}"
+  }
+}
+
+### EKS Node Group Configuration ###
+resource "aws_eks_node_group" "my_eks_node_group" {
+  cluster_name    = aws_eks_cluster.my_eks_cluster.name
+  node_group_name = "dev"
+  node_role_arn   = aws_iam_role.worker_nodes_role.arn
+  subnet_ids = var.private_subnets
+  capacity_type = "ON_DEMAND"
+  disk_size = "20"
+  instance_types = ["t2.small"]
+
+  labels =  tomap({env = "dev"})
+
+  scaling_config {
+    desired_size = 2
+    max_size     = 3
+    min_size     = 1
+  }
+
+  update_config {
+    max_unavailable = 1
+  }
+
+  depends_on = [
+    aws_iam_role_policy_attachment.AmazonEKSWorkerNodePolicy,
+    aws_iam_role_policy_attachment.AmazonEKS_CNI_Policy,
+    aws_iam_role_policy_attachment.AmazonEC2ContainerRegistryReadOnly,
+    aws_iam_role_policy_attachment.AutoScalingFullAccess,
+  ]
+
+  tags = {
+    Name = "EKS Worker Node ${var.tags_name}"
   }
 }

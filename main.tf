@@ -15,6 +15,7 @@ resource "aws_instance" "my_ec2" {
   root_block_device {
     encrypted = var.root_block_device-encrypted
   }
+  depends_on = [aws_vpc.my_vpc]
 }
 
 ### Networking Resources ###
@@ -82,4 +83,5 @@ module "eks_cluster" {
   tags_name                     = var.tags_name
   private_subnets               = aws_subnet.private_subnets[*].id
   worker_node_security_group_id = module.security_groups.worker_node_security_group_id
+  vpc_id                        = aws_vpc.my_vpc.id
 }
